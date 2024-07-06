@@ -1,0 +1,41 @@
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  /* Style for the form */
+  .payment-form {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  /* Style for the label */
+  .payment-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  /* Style for the card element */
+  .payment-form .CardElement {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .payment-form .CardElement.cardNumber{
+    
+  }
+  /* Style for the button */
+  .payment-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  /* Style for the error message */
+  .payment-form .error-message {
+    color: #DC3545;
+    margin-top: 10px;
+  }
