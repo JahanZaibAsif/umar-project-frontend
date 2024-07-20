@@ -22,7 +22,7 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}//admin_login`, formData);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/admin_login`, formData);
       console.log('Login successful:', response.data);
       const { token, data } = response.data;
       localStorage.setItem('token', token); // Store token in local storage

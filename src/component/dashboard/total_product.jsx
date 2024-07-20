@@ -16,6 +16,7 @@ function TotalProduct() {
         product_name: '',
         product_price: '',
         product_detail: '',
+        product_quantity: '',
         product_picture: null
     });
     const [EditData, setEditData] = useState({
@@ -69,16 +70,19 @@ function TotalProduct() {
             formData.append('product_price', ProductData.product_price);
             formData.append('product_detail', ProductData.product_detail);
             formData.append('product_picture', ProductData.product_picture);
+            formData.append('product_quantity', ProductData.product_quantity);
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/create_product`, formData);
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
                 text: 'Your Product added successfully!',
             });
+            
             setProductData({
                 product_name: '',
                 product_price: '',
                 product_detail: '',
+                product_quantity: '',
                 product_picture: null,
             });
             setProducts([...products, response.data]);
@@ -98,6 +102,8 @@ function TotalProduct() {
             formData.append('product_name', EditData.product_name);
             formData.append('product_price', EditData.product_price);
             formData.append('product_detail', EditData.product_detail);
+            formData.append('product_detail', EditData.product_detail);
+
             if (EditData.product_picture) {
                 formData.append('product_picture', EditData.product_picture);
             }
@@ -170,6 +176,10 @@ function TotalProduct() {
                                     <div className="mb-3">
                                         <label htmlFor="product_detail" className="form-label">Product Detail</label>
                                         <input type="text" className="form-control" id="product_detail" name="product_detail" value={ProductData.product_detail} onChange={handleChange} />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="product_quantity" className="form-label">Product Quantity</label>
+                                        <input type="number" className="form-control" id="product_quantity" name="product_quantity" value={ProductData.product_quantity} onChange={handleChange} />
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

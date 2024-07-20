@@ -1,6 +1,7 @@
 
 import React from 'react'
-import { useEffect } from 'react'
+import { useEffect ,useState } from 'react'
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import 'owl.carousel';
 import 'slick-carousel';
@@ -13,25 +14,34 @@ useEffect(() => {
           $("#tabs").tabs();
         });
       
-        $("#preloader").animate({
-          'opacity': '0'
-        }, 600, function () {
-          setTimeout(function () {
-            $("#preloader").css("visibility", "hidden").fadeOut();
-          }, 300);
-        });
+        const handlePreloader = () => {
+          $("#preloader").animate({
+            'opacity': '0'
+          }, 600, function () {
+            setTimeout(function () {
+              $("#preloader").css("visibility", "hidden").fadeOut();
+            }, 300);
+          });
+        };
       
-        $(window).scroll(function () {
-          var scroll = $(window).scrollTop();
-          var box = $('.header-text').height();
-          var header = $('header').height();
+        const setup = () => {
+          "use strict";
       
-          if (scroll >= box - header) {
-            $("header").addClass("background-header");
-          } else {
-            $("header").removeClass("background-header");
-          }
-        });
+          $(function () {
+            $("#tabs").tabs();
+          });
+      
+          $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            var box = $('.header-text').height();
+            var header = $('header').height();
+      
+            if (scroll >= box - header) {
+              $("header").addClass("background-header");
+            } else {
+              $("header").removeClass("background-header");
+            }
+          });
       
         if ($('.owl-clients').length) {
           $('.owl-clients').owlCarousel({
@@ -179,44 +189,40 @@ useEffect(() => {
         });
        
       };
-    
-}, [])
+    const timer = setTimeout(handlePreloader, 3000);
+
+    return () => clearTimeout(timer);
+    }
+    }, []);
 
   return (
     <div>
   
-    <div id="preloader">
-        <div className="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>  
-    {/* <!-- ***** Preloader End ***** --> */}
+    
 
     {/* <!-- Header --> */}
     <header className="">
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <a className="navbar-brand" href="index.html"><h2>Sixteen <em>Clothing</em></h2></a>
+          <a className="navbar-brand" href="index.html"><h2>STRONG PACKAGINGS
+           <em> LIMITED</em></h2></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="index.html">Home
-                  <span className="sr-only">(current)</span>
-                </a>
+              <li className="nav-item">
+              <Link className="nav-link" to="/">Home</Link>
               </li> 
               <li className="nav-item">
-                <a className="nav-link" href="products.html">Our Products</a>
+                <Link className="nav-link" to="/">Our Products</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="about.html">About Us</a>
+                <Link className="nav-link" to="/about_us">About Us</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="contact.html">Contact Us</a>
+
+                <Link className="nav-link" to="/contact">Contact Us</Link>
               </li>
             </ul>
           </div>

@@ -14,6 +14,9 @@ import TotalProduct from './component/dashboard/total_product';
 import TotalSale from './component/dashboard/total_sale';
 import Dashboard from './component/dashboard/main_dashboard';
 import BookOrder from './component/dashboard/bookOrder';
+import Contact from './component/contact';
+import AboutUs from './component/AboutUs';
+import ShowProduct from './component/show_product';
 
 function App() {
   console.log('BASE URL:', process.env.REACT_APP_BASE_URL);
@@ -30,6 +33,11 @@ function App() {
         <Route path='/stripe' element={<Stripe/>} />
         <Route path="/show_item/:id" element={<Show_item />} />
         <Route path="/signup" element={<SignUp/>} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/about_us" element={<AboutUs/>} />
+        <Route path="/show_product" element={<ShowProduct/>} />
+
+
 
         <Route path="/signin" element={<SignIn/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
