@@ -24,6 +24,7 @@ function TotalProduct() {
         product_name: '',
         product_price: '',
         product_detail: '',
+        product_quantity:'',
         product_picture: null
     });
 
@@ -101,12 +102,13 @@ function TotalProduct() {
             const formData = new FormData();
             formData.append('product_name', EditData.product_name);
             formData.append('product_price', EditData.product_price);
-            formData.append('product_detail', EditData.product_detail);
-            formData.append('product_detail', EditData.product_detail);
-
+            formData.append('product_detail', EditData.product_detail); // Ensure this is a string
+            formData.append('product_quantity', EditData.product_quantity);
+            
             if (EditData.product_picture) {
                 formData.append('product_picture', EditData.product_picture);
             }
+            
             const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/update_product/${EditData._id}`, formData);
             Swal.fire({
                 icon: 'success',
@@ -118,6 +120,7 @@ function TotalProduct() {
             console.error('Error updating data on server:', error);
         }
     };
+    
 
     const handleDelete = async (id) => {
         Swal.fire({
@@ -151,7 +154,7 @@ function TotalProduct() {
             <div className="content">
                 <Navbar />
                 {/* Add Product Model */}
-                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id="create_product" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -215,8 +218,13 @@ function TotalProduct() {
                                         {EditData.product_picture && (<p>Selected file: {EditData.product_picture.name}</p>)}
                                     </div>
                                     <div className="mb-3">
+                                        <label htmlFor="edit_product_quantity" className="form-label">Product Quantity</label>
+                                        <input type="text" className="form-control" id="edit_product_quantity" name="product_quantity" value={EditData.product_quantity} onChange={handleEditChange} />
+                                    </div>
+                                        <div className="mb-3">
                                         <label htmlFor="edit_product_detail" className="form-label">Product Detail</label>
                                         <input type="text" className="form-control" id="edit_product_detail" name="product_detail" value={EditData.product_detail} onChange={handleEditChange} />
+
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -233,7 +241,7 @@ function TotalProduct() {
                     <div className="bg-light text-center rounded p-4">
                         <div className="d-flex align-items-center justify-content-between mb-4">
                             <h6 className="mb-0">Total Product</h6>
-                            <button className='btn btn-success' data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>
+                            <button className='btn btn-success' data-bs-toggle="modal" data-bs-target="#create_product">Add Product</button>
                         </div>
                         <div className="table-responsive">
                             <table className="table text-start align-middle table-bordered table-hover mb-0">
@@ -242,6 +250,7 @@ function TotalProduct() {
                                         <th scope="col">ID</th>
                                         <th scope="col">Product Name</th>
                                         <th scope="col">Product Price</th>
+                                        <th scope="col">Product Quantity</th>
                                         <th scope="col">Product Picture</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -252,6 +261,7 @@ function TotalProduct() {
                                             <td>{value._id}</td>
                                             <td>{value.product_name}</td>
                                             <td>{value.product_price}</td>
+                                            <td>{value.product_quantity}</td>
                                             <td><img src={value.product_picture} height={100} width={100} alt="" /></td>
                                             <td>
                                                 <button className='btn btn-primary m-2' data-bs-toggle="modal" data-bs-target="#editModal" onClick={() => handleEdit(value)}>Edit</button>
@@ -269,5 +279,6 @@ function TotalProduct() {
         </>
     );
 }
+
 
 export default TotalProduct;
