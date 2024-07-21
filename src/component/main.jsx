@@ -23,6 +23,7 @@ const truncateText = (text, maxLength) => {
 
 
 const [ItemShow, setItemShow] = useState(null);
+const [ItemBuy , setItemBuy] = useState(null);
 const navigate = useNavigate();
 
 
@@ -32,6 +33,10 @@ const handleItemShow = (ItemId) => {
   if (showData) {
     navigate('/show_product', { state: { Data: showData } });
   }};
+  const handleItemBuy = (ItemId) => {
+    const showData = Product.find(item => item._id === ItemId);
+    setItemBuy(showData);
+   };
 
 useEffect(() => {
   if (ItemShow) {
@@ -42,7 +47,7 @@ useEffect(() => {
   return (
     <div>
   <Header/>
-  <Buy_Now item={ItemShow}/>
+  <Buy_Now item={ItemBuy}/>
     <Confirm_Order/>
 
     {/* <!-- Banner Starts Here --> */}
@@ -94,7 +99,7 @@ useEffect(() => {
                                  state: { Data: ItemShow }
                                }} className='text-light'  >Show Item</Link>
                         </button></div>
-                          <div className="col-sm-6 col-6"><button className='btn btn-primary'data-toggle="modal" data-target="#buy_item" onClick={() => handleItemShow(value._id)} >
+                          <div className="col-sm-6 col-6"><button className='btn btn-primary'data-toggle="modal" data-target="#buy_item" onClick={() => handleItemBuy(value._id)} >
                           Buy Now
                           </button>
                             </div>

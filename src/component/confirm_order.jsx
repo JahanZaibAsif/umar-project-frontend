@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Confirm_Order({order}) {
   const handleCashOnDelivery = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}//cashondelivery/confirm_order`, { // Corrected URL
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/cashondelivery/confirm_order`, { // Corrected URL
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

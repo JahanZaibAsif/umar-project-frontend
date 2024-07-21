@@ -71,7 +71,7 @@ function Buy_Now({ item }) {
     formDataToSend.append('size', formData.size);
     formDataToSend.append('color', formData.color);
   
-    fetch('http://localhost:4000/store_order', {
+    fetch(`${process.env.REACT_APP_BASE_URL}/store_order`, {
       method: 'POST',
       body: formDataToSend,
       headers: {
@@ -121,7 +121,6 @@ function Buy_Now({ item }) {
   
   return (
     <div>
-      {/* <Stripe order={{orderId,orderPrice}}/> */}
     <Confirm_Order order={{orderId,orderPrice}} showConfirmation={showConfirmation} closeModal={closeModal} />
 
       <div className="modal fade" id="buy_item" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
