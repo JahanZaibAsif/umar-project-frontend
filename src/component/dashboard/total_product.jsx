@@ -107,7 +107,7 @@ function TotalProduct() {
             if (EditData.product_picture) {
                 formData.append('product_picture', EditData.product_picture);
             }
-            const response = await axios.put(`http://localhost:4000/update_product/${EditData._id}`, formData);
+            const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/update_product/${EditData._id}`, formData);
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
@@ -131,7 +131,7 @@ function TotalProduct() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`http://localhost:4000/delete_product/${id}`);
+                    await axios.delete(`${process.env.REACT_APP_BASE_URL}/delete_product/${id}`);
                     Swal.fire(
                         'Deleted!',
                         'Your product has been deleted.',

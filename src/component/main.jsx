@@ -99,7 +99,7 @@ useEffect(() => {
                                  state: { Data: ItemShow }
                                }} className='text-light'  >Show Item</Link>
                         </button></div>
-                          <div className="col-sm-6 col-6"><button className='btn btn-primary'data-toggle="modal" data-target="#buy_item" onClick={() => handleItemBuy(value._id)} >
+                          <div className="col-sm-6 col-6"><button className='btn btn-primary'data-toggle="modal" data-target=".buy_item" onClick={() => handleItemBuy(value._id)} >
                           Buy Now
                           </button>
                             </div>
